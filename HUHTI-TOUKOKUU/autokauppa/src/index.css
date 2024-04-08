@@ -1,0 +1,115 @@
+html, body, #root {
+  height: 100%;
+  width: 99%;
+  Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+  background-color: rgb(101, 8, 90);
+}
+.ag-theme-quartz {
+  width: 100%; /* Taulukko laajenee äärirajoilleen ennen max-widthia */
+  max-width: 1025px; /* Aseta tämä arvo niin suureksi kuin haluat taulukon maksimileveyden olevan */
+  margin: auto;
+}
+
+.ag-header-cell, .ag-header-group-cell {
+  background-color: #8ed1e9;
+  border-radius: 5px; /* Aseta haluamasi väri */
+  height: 1%;
+}
+.ag-header-cell-label, .ag-header-group-cell-label {
+  color: rgb(173, 11, 213); /* Aseta haluamasi tekstiväri */
+
+}
+.ag-header-row.ag-header-row-column:hover {
+  background-color: #77ebff;
+  border: 4px solid rgb(173, 11, 213);
+  color: #0ad8fc;
+  border-radius: 1px;
+}
+.ag-header-row.ag-header-row-column {
+  Font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+  font-weight: bold;
+  font-size: 19px;
+  border: 4px solid rgb(173, 11, 213);
+  border-radius: 3px;
+  background-color:#8ed1e9;
+
+}
+.ag-cell-label-container.ag-header-cell-sorted-none {
+
+}
+
+
+
+
+.MuiAppBar-colorPrimary {
+  background-color: #000000; /* Material UI:n sininen sävy */
+}
+.MuiAppBar-root {
+   /* Aseta haluamasi AppBarin taustaväri */
+  margin-bottom: 5px;
+}
+.MuiTypography-root.MuiTypography-h6 {
+  color: rgb(101, 8, 90);
+  font-size: 45px;
+  Font-family: Copperplate, Copperplate Gothic Light, fantasy;
+
+}
+.MuiToolbar-root.MuiToolbar-gutters{
+  background-color: #0ad8fc;
+}
+
+
+.ag-cell-not-inline-editing.ag-cell-normal-height {
+  background-color: #98dbf3e6;
+}
+
+.ag-root.ag-unselectable.ag-layout-normal{
+background-color: #98dbf3e6;
+}
+/* Tyyli MuiButton-komponentille */
+.MuiButton-root.add-car-button {
+  background-color: #0ad8fc; /* Aseta haluamasi taustaväri */
+  color: rgb(105, 7, 147); /* Aseta haluamasi tekstiväri */
+  /* Lisää muita haluamiasi tyylisääntöjä */
+  border: 1px solid black;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  margin-left: 14px;
+}
+.MuiButton-outlinedPrimary {
+  color: #070707e6;
+}
+.MuiButtonBase-root.MuiButton-root:hover {
+  background-color: #FFFDD0;   /* Vaihtoehtoisesti voisi antaa värihalua */
+}
+.MuiButton-root.delete-button {
+  background-color: #e22305; /* Punainen tausta destruktiiviselle toiminnolle */
+  color: white;
+}
+
+.MuiButtonBase-root.MuiButton-root.delete-button:hover {
+  background-color: #000000; /* Tummempi punainen hover-efektissä */
+  color: #e22305;
+}
+.MuiButton-root.edit-button {
+  background-color: #6f4798; /* Sininen tausta */
+  color: white;
+}
+
+.MuiButton-root.edit-button:hover {
+  background-color: #FFFDD0; 
+  color: #6f4798 ;/* Tummempi sininen hover-tilassa */
+}
+
+
+/* Sovelluksen taustaväri */
+.ag-root.ag-unselectable.ag-layout-normal{
+  background-color: #98dbf3e6; /* Vaalea tausta, joka on helppo silmille */
+}
+
+
+.ag-root-wrapper.ag-ltr.ag-layout-normal {
+  background-color: #04fffb;
+}
+
+
