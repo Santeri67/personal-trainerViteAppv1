@@ -1,0 +1,31 @@
+.table.table-dark1 {
+    margin-top: 50px;
+    width: 80%;
+    border-collapse: collapse; /* Ensures that table borders are collapsed into a single border */
+}
+
+.table.table-dark1 th, .table.table-dark1 td {
+    padding: 12px; /* Spacious padding for table cells */
+    border: 1px solid #572981; /* Slightly lighter border for elements within the table */
+    text-align: left; /* Aligns text to the left */
+    cursor: pointer; /* Indicates clickable items */
+}
+
+.table.table-dark1 th {
+    background-color: #21033a; /* Even darker background for headers */
+    color: white;
+    
+}
+.table-dark1 td {
+    background-color: rgba(245, 245, 220, 0.821);
+    color: #21033a;
+}
+
+
+
+/* Hover effects for rows */
+.table.table-dark1 tbody tr:hover {
+    background-color: #0884e2; /* Lighten the row background on hover for interactivity */
+}
+
+
