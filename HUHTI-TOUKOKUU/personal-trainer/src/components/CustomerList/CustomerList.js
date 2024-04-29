@@ -7,7 +7,7 @@ import CustomerTable from './CustomerTable'; // Import the new component
 
 function CustomerList() {
     const [customers, setCustomers] = useState([]);
-    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+    const [sortConfig, setSortConfig] = useState({ key: 'firstname', direction: 'ascending' });
     const [filter, setFilter] = useState('');
     const navigate = useNavigate();
 
@@ -30,11 +30,11 @@ function CustomerList() {
     }, [sortConfig, filter]);
 
     const handleSort = (key) => {
-        setSortConfig({
-            key,
-            direction: sortConfig.key === key && sortConfig.direction === 'ascending' ? 'descending' : 'ascending'
-        });
-    };
+    setSortConfig(prevConfig => ({
+        key,
+        direction: prevConfig.key === key && prevConfig.direction === 'ascending' ? 'descending' : 'ascending'
+    }));
+};
 
     if (customers.length === 0) {
         return <div>No customers found or data is still loading.</div>;
@@ -44,7 +44,7 @@ function CustomerList() {
         <div>
             <h2>Customer List</h2>
             <FilterInput filter={filter} setFilter={setFilter} />
-            <CustomerTable customers={customers} handleSort={handleSort} navigate={navigate} />
+            <CustomerTable customers={customers} handleSort={handleSort} navigate={navigate} sortConfig={sortConfig} />
         </div>
     );
 }
@@ -72,6 +72,7 @@ function FilterInput({ filter, setFilter }) {
     return (
         <input
             type="text"
+            className="form-control my-3"
             placeholder="Filter by name..."
             value={filter}
             onChange={(e) => setFilter(e.target.value)}

@@ -1,6 +1,8 @@
 .table.table-dark {
-    margin-top: 50px;
-    width: 80%;
+    margin-top: 1px;
+    width: 80%; /* Width less than 100% is necessary */
+    margin-left: auto; /* Auto margin for center alignment */
+    margin-right: auto; /* Auto margin for center alignment */
     border-collapse: collapse; /* Ensures that table borders are collapsed into a single border */
 }
 
@@ -14,17 +16,18 @@
 .table.table-dark th {
     background-color: #21033a; /* Even darker background for headers */
     color: #fff;
-    
 }
+
 .table-dark td {
     background-color: rgba(245, 245, 220, 0.821);
     color: #21033a;
 }
 
 .form-control.my-3 {
-    width: 50%; /* Full width to align with the table */
+    width: 30%; /* Full width to align with the table */
     padding: 10px; /* Adequate padding for the input field */
-    margin-bottom: 1rem; /* Margin to separate the table from the filter input */
+    margin-left: auto;
+    margin-right: auto;
     color: #067aee; /* Neutral color for text */
     background-color: #fff; /* White background for clear visibility */
     border: 1px solid #ced4da; /* Subtle border */
@@ -34,5 +37,14 @@
 .table.table-dark tbody tr:hover {
     background-color: #0884e2; /* Lighten the row background on hover for interactivity */
 }
+.sort-icon-active {
+    color: rgb(0, 242, 255); /* Replace with your active color */
+    cursor: pointer;
+    float: inline-end;
+}
 
-
+.sort-icon-inactive {
+    float: right;
+    color: rgba(128, 128, 128, 0.812); /* Replace with your inactive color */
+    cursor: pointer;
+}

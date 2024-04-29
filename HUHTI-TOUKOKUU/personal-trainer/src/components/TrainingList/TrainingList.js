@@ -5,7 +5,8 @@ import TrainingTable from './TrainingTable';
 
 function TrainingList({ customerId }) {
   const [trainings, setTrainings] = useState([]);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+  // Initialize sortConfig with a valid field, such as 'date'
+  const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'ascending' });
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -16,7 +17,7 @@ function TrainingList({ customerId }) {
           : 'https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings';
         
         const response = await axios.get(endpoint);
-        let fetchedTrainings = response.data._embedded.trainings.map(async (training) => {
+        let fetchedTrainings = (await Promise.all(response.data._embedded.trainings.map(async (training) => {
           try {
             const customerResponse = await axios.get(training._links.customer.href);
             const customer = customerResponse.data;
@@ -27,23 +28,26 @@ function TrainingList({ customerId }) {
             };
           } catch (err) {
             console.error("Error fetching customer data for training:", err);
-            // Provide default data if customer details can't be loaded
             return {
               ...training,
               date: dayjs(training.date).format('DD.MM.YYYY HH:mm'),
               customerName: "Unknown Customer"
             };
           }
-        });
-
-        fetchedTrainings = await Promise.all(fetchedTrainings);
-
-        if (filter) {
-          fetchedTrainings = applyFiltering(fetchedTrainings, filter);
-        }
+        }))).filter(training =>
+          training.activity.toLowerCase().includes(filter.toLowerCase())
+        );
 
         if (sortConfig.key) {
-          fetchedTrainings = applySorting(fetchedTrainings, sortConfig);
+          fetchedTrainings = fetchedTrainings.sort((a, b) => {
+            if (a[sortConfig.key] < b[sortConfig.key]) {
+              return sortConfig.direction === 'ascending' ? -1 : 1;
+            }
+            if (a[sortConfig.key] > b[sortConfig.key]) {
+              return sortConfig.direction === 'ascending' ? 1 : -1;
+            }
+            return 0;
+          });
         }
 
         setTrainings(fetchedTrainings);
@@ -56,28 +60,10 @@ function TrainingList({ customerId }) {
   }, [customerId, sortConfig, filter]);
 
   const handleSort = (key) => {
-    setSortConfig({
+    setSortConfig(prevConfig => ({
       key,
-      direction: sortConfig.key === key && sortConfig.direction === 'ascending' ? 'descending' : 'ascending'
-    });
-  };
-
-  const applyFiltering = (trainings, filter) => {
-    return trainings.filter(training =>
-      training.activity.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const applySorting = (trainings, sortConfig) => {
-    return [...trainings].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === 'ascending' ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === 'ascending' ? 1 : -1;
-      }
-      return 0;
-    });
+      direction: prevConfig.key === key && prevConfig.direction === 'ascending' ? 'descending' : 'ascending'
+    }));
   };
 
   if (trainings.length === 0) {
@@ -87,14 +73,14 @@ function TrainingList({ customerId }) {
   return (
     <div>
       <h2>Training List</h2>
-        <input
-            type="text"
-            className="form-control my-3"
-            placeholder="Filter by activity..."
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-        />
-        <TrainingTable trainings={trainings} handleSort={handleSort} />
+      <input
+          type="text"
+          className="form-control my-3"
+          placeholder="Filter by activity..."
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+      />
+      <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} />
     </div>
   );
 }
