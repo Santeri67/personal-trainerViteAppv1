@@ -37,14 +37,23 @@
 .table.table-dark tbody tr:hover {
     background-color: #0884e2; /* Lighten the row background on hover for interactivity */
 }
-.sort-icon-active {
-    color: rgb(0, 242, 255); /* Replace with your active color */
+.svg-inline--fa.fa-sort {
+    color: rgb(123, 0, 255) !important;  /* Replace with your active color */
     cursor: pointer;
     float: inline-end;
 }
-
+.svg-inline--fa.fa-sort-down {
+    color: rgb(0, 242, 255) !important;  /* Replace with your active color */
+    cursor: pointer;
+    float: inline-end;
+}
+.svg-inline--fa.fa-sort-up {
+    color: rgb(0, 242, 255) !important;  /* Replace with your active color */
+    cursor: pointer;
+    float: inline-end;
+}
 .sort-icon-inactive {
     float: right;
-    color: rgba(128, 128, 128, 0.812); /* Replace with your inactive color */
+    color: rgba(243, 6, 6, 0.812); /* Replace with your inactive color */
     cursor: pointer;
 }

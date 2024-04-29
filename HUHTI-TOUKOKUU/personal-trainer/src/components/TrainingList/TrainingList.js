@@ -1,86 +1,81 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import TrainingTable from './TrainingTable';
 
 function TrainingList({ customerId }) {
+  // State declarations
   const [trainings, setTrainings] = useState([]);
-  // Initialize sortConfig with a valid field, such as 'date'
-  const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'ascending' });
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    const fetchTrainings = async () => {
-      try {
-        const endpoint = customerId
-          ? `https://customerrestservice-personaltraining.rahtiapp.fi/api/customers/${customerId}/trainings`
-          : 'https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings';
-        
-        const response = await axios.get(endpoint);
-        let fetchedTrainings = (await Promise.all(response.data._embedded.trainings.map(async (training) => {
-          try {
-            const customerResponse = await axios.get(training._links.customer.href);
-            const customer = customerResponse.data;
-            return {
-              ...training,
-              date: dayjs(training.date).format('DD.MM.YYYY HH:mm'),
-              customerName: `${customer.firstname} ${customer.lastname}`
-            };
-          } catch (err) {
-            console.error("Error fetching customer data for training:", err);
-            return {
-              ...training,
-              date: dayjs(training.date).format('DD.MM.YYYY HH:mm'),
-              customerName: "Unknown Customer"
-            };
-          }
-        }))).filter(training =>
-          training.activity.toLowerCase().includes(filter.toLowerCase())
-        );
+  // Filter trainings based on user input
+  const applyFiltering = useCallback((trainings) => (
+    trainings.filter(training =>
+      training.activity.toLowerCase().includes(filter.toLowerCase())
+    )
+  ), [filter]);
 
-        if (sortConfig.key) {
-          fetchedTrainings = fetchedTrainings.sort((a, b) => {
-            if (a[sortConfig.key] < b[sortConfig.key]) {
-              return sortConfig.direction === 'ascending' ? -1 : 1;
-            }
-            if (a[sortConfig.key] > b[sortConfig.key]) {
-              return sortConfig.direction === 'ascending' ? 1 : -1;
-            }
-            return 0;
-          });
-        }
-
-        setTrainings(fetchedTrainings);
-      } catch (error) {
-        console.error('Error fetching trainings: ', error);
+  // Sort trainings based on selected column
+  const applySorting = useCallback((trainings) => (
+    [...trainings].sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? -1 : 1;
       }
-    };
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    })
+  ), [sortConfig]);
 
-    fetchTrainings();
-  }, [customerId, sortConfig, filter]);
+  // Fetch and process trainings from the API
+  const fetchTrainings = useCallback(async () => {
+    try {
+      const trainingEndpoint = 'https://customerrestservice-personaltraining.rahtiapp.fi/gettrainings';
+      const response = await axios.get(trainingEndpoint);
 
-  const handleSort = (key) => {
+      const processedTrainings = response.data.map(training => ({
+        ...training,
+        date: dayjs(training.date).format('DD.MM.YYYY HH:mm'),
+      }));
+
+      setTrainings(applySorting(applyFiltering(processedTrainings)));
+    } catch (error) {
+      console.error('Error fetching trainings:', error);
+      alert(`Failed to fetch trainings: ${error.message}`);
+    }
+  }, [applyFiltering, applySorting]);
+
+  // Handle user sorting action
+  const handleSort = useCallback((key) => (
     setSortConfig(prevConfig => ({
       key,
-      direction: prevConfig.key === key && prevConfig.direction === 'ascending' ? 'descending' : 'ascending'
-    }));
-  };
+      direction: prevConfig.key === key && prevConfig.direction === 'ascending' ? 'descending' : 'ascending',
+    }))
+  ), []);
 
-  if (trainings.length === 0) {
-    return <div>No trainings found or data is still loading.</div>;
-  }
+  // Fetch trainings on mount and when dependencies change
+  useEffect(() => {
+    fetchTrainings();
+  }, [fetchTrainings]);
 
+  // Render the training list or a loading message
   return (
     <div>
       <h2>Training List</h2>
       <input
-          type="text"
-          className="form-control my-3"
-          placeholder="Filter by activity..."
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+        type="text"
+        className="form-control my-3"
+        placeholder="Filter by activity..."
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
       />
-      <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} />
+      {trainings.length > 0 ? (
+        <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} />
+      ) : (
+        <div>No trainings found or data is still loading.</div>
+      )}
     </div>
   );
 }
