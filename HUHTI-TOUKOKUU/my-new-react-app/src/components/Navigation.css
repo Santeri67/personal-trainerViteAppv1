@@ -1,0 +1,23 @@
+.navbar {
+    padding: 10px 20px; /* Increased padding */
+  }
+  
+  .navbar.Brand {
+    font-size: 1.5em; /* Larger brand font */
+  }
+  
+  .nav-link {
+    margin-right: 115px; /* Space between links */
+    color: white; /* White text */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .nav-link:hover, .Nav-link.active {
+    color: #ccc; /* Lighter color on hover and active */
+  }
+  
+  .active {
+    font-weight: bold; /* Bold text for active link */
+    text-decoration: underline; /* Underline active link */
+  }
+  
