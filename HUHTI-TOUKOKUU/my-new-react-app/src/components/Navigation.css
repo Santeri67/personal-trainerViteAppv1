@@ -1,23 +1,45 @@
 .navbar {
-    padding: 10px 20px; /* Increased padding */
+    padding: 10px 2px 20px 2px; /* Increased padding */
+    text-align: center;
+    margin-top: 1px;
   }
-  
-  .navbar.Brand {
-    font-size: 1.5em; /* Larger brand font */
-  }
+.Navi {
+    margin-top: -5px;
+    background-color: #7bcdf7;
+    width:75%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700 bold;
+    border-radius: 8px;
+    margin-left: 10%;
+}
+@media (max-width: 929px) {
+.Navi {
+    margin-top: -5px;
+    width:120%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700 bold;
+    background-color: #7bcdf7;
+    border-radius: 8px;
+    margin-left: -10%;
+}}
   
   .nav-link {
-    margin-right: 115px; /* Space between links */
-    color: white; /* White text */
+    margin-right: 10%; /* Adjusted space between links */
+    margin-left: 10%;
+    color: #410590;
     transition: color 0.3s; /* Smooth transition for hover effect */
+    font-size: 1.6em;
+    border-radius: 15px;
+    padding: 0%;
   }
   
-  .nav-link:hover, .Nav-link.active {
-    color: #ccc; /* Lighter color on hover and active */
+  .nav-link:hover, .nav-link.active {
+    color: #a513e4; /* Lighter color on hover and active */
   }
   
   .active {
     font-weight: bold; /* Bold text for active link */
-    text-decoration: underline; /* Underline active link */
   }
+  
+
   

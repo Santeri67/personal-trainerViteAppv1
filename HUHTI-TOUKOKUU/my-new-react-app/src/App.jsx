@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Navigation from '././components/Navigation'; // Make sure this path is correct
+import './App.css';
 import CustomerList from './components/CustomerList/CustomerList';
-import Navigation from './components/Navigation';
+import CustomerTrainings from './components/TrainingList/CustomerTrainings';
 import TrainingList from './components/TrainingList/TrainingList';
 
 function App() {
@@ -9,7 +11,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/customers" element={<CustomerList />} />
-        <Route path="/customers/:customerId/trainings" element={<TrainingList />} />
+        <Route path="/customers/:customerId/trainings" element={<CustomerTrainings />} />
         <Route path="/trainings" element={<TrainingList />} />
         <Route path="/" element={<CustomerList />} />
       </Routes>

@@ -1,42 +1,52 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  --primary-color: #21033a; /* Primary color for backgrounds */
+  --secondary-color: #572981; /* Secondary color for borders */
+  --highlight-color: #0884e2; /* Highlight color for hover effects */
+  --background-color: rgba(143, 241, 248, 0.821); /* Background color for table cells */
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+
+/* If you have a specific style guide or theme colors, replace the colors accordingly */
+
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+h2 {
   text-align: center;
+  margin: 20px 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.form-control {
+  width: auto;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+  border: 3px groove #5604a3; /* Stylish purple border */
+  border-radius: 7px;
 }

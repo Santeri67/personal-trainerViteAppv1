@@ -9,7 +9,7 @@ import './TrainingList.css';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-function TrainingTable({ trainings, handleSort, sortConfig }) {
+function TrainingTable({ trainings, handleSort, sortConfig}) {
     // Set locale to Finnish
     dayjs.locale('fi');
     dayjs.tz.setDefault("Europe/Helsinki");
@@ -30,6 +30,7 @@ function TrainingTable({ trainings, handleSort, sortConfig }) {
                         <td>{dayjs(training.date).format('DD.MM.YYYY HH:mm')}</td>
                         <td>{training.duration}</td>
                         <td>{training.activity}</td>
+                        {/* Use training.customerName directly */}
                         <td>{training.customerName || 'N/A'}</td>
                     </tr>
                 ))}

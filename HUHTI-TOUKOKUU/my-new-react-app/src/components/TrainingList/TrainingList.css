@@ -1,15 +1,39 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h2 {
+    text-align: center; /* Center-align the heading */
+    margin-bottom: 20px; /* Add some space below the heading */
+    color: rgb(65, 5, 144); /* Optional: Change the color */
+    font-size: 1.8em; /* Optional: Adjust the font size */
+}
+.container {
+    width: 80%; /* Adjust this to control the outer container's width */
+    margin: 20px auto; /* Center the container horizontally */
+    padding: 20px; /* Adds padding inside the container */
+    background-color:rgba(248, 255, 206, 0.694); /* Optional: Background color for the container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow around the container */
+}
 .table.table-dark {
-    margin-top: 1px;
-    width: 80%; /* Width less than 100% is necessary */
-    margin-left: auto; /* Auto margin for center alignment */
-    margin-right: auto; /* Auto margin for center alignment */
-    border-collapse: collapse; /* Ensures that table borders are collapsed into a single border */
+    margin-top: 0; /* Remove the top margin from the table */
+    width: 100%; /* Let the table take full width of the container */
+    margin-left: auto; /* Center align the table */
+    margin-right: auto; /* Center align the table */
+    border-collapse: collapse; /* Collapsed borders */
 }
 
 .table.table-dark th, .table.table-dark td {
-    padding: 12px; /* Spacious padding for table cells */
-    border: 1px solid #572981; /* Slightly lighter border for elements within the table */
-    text-align: left; /* Aligns text to the left */
+    padding: 12px; /* Spacing inside cells */
+    border: 1px solid #572981; /* Border color */
+    text-align: left; /* Align text to the left */
     cursor: pointer; /* Indicates clickable items */
 }
 
@@ -22,16 +46,11 @@
     background-color: rgba(245, 245, 220, 0.821);
     color: #21033a;
 }
+/* Ensure the table cell containing the buttons is wide enough */
 
-.form-control.my-3 {
-    width: 30%; /* Full width to align with the table */
-    padding: 10px; /* Adequate padding for the input field */
-    margin-left: auto;
-    margin-right: auto;
-    color: #067aee; /* Neutral color for text */
-    background-color: #fff; /* White background for clear visibility */
-    border: 1px solid #ced4da; /* Subtle border */
-}
+
+
+
 
 /* Hover effects for rows */
 .table.table-dark tbody tr:hover {

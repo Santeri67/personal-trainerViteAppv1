@@ -1,35 +1,57 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+.table-responsive {
+    display: block;
+    width: 95%; /* Ensure it takes the full width of its parent container */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 0 15px; /* Add horizontal padding to create gaps on both sides */
+    margin-left: auto;
+    margin-right: auto;
+}
+.container {
+    width: 80%; /* Adjust this to control the outer container's width */
+    margin: 20px auto; /* Center the container horizontally */
+    padding: 20px; /* Adds padding inside the container */
+    background-color: #f6f2b0; /* Optional: Background color for the container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow around the container */
+}
+.table td.actions {
+    align-items: center;
+}
 .table.table-dark1 {
-    margin-top: 1px;
-    width: 70%; /* Width less than 100% is necessary */
-    margin-left: auto; /* Auto margin for center alignment */
-    margin-right: auto; /* Auto margin for center alignment */
-    border-collapse: collapse; /* Ensures that table borders are collapsed into a single border */
+    width: 100%; /* Full width */
+    margin-top: 10px; /* Adjusted margin */
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures the table layout does not depend on content */
 }
 
 .table.table-dark1 th, .table.table-dark1 td {
-    padding: 12px; /* Spacious padding for table cells */
     border: 1px solid #572981; /* Slightly lighter border for elements within the table */
     text-align: left; /* Aligns text to the left */
+    word-wrap: break-word;
     cursor: pointer; /* Indicates clickable items */
 }
 
 .table.table-dark1 th {
     background-color: #21033a; /* Even darker background for headers */
     color: #fff;
+    padding: 14px;
     
 }
 .table-dark1 td {
     background-color: rgba(245, 245, 220, 0.821);
     color: #21033a;
 }
-.form-control.my-3 {
-    width: 30%; /* Full width to align with the table */
-    padding: 10px; /* Adequate padding for the input field */
-    align-content: center;
-    color: #067aee; /* Neutral color for text */
-    background-color: #fff; /* White background for clear visibility */
-    border: 1px solid #ced4da; /* Subtle border */
-}
+/* Ensure the table cell containing the buttons is wide enough */
 
 
 
@@ -54,6 +76,73 @@
 .text-center {
     text-align: center;
   }
+  .btn {
+    margin: 2px; /* Adds space between buttons */
+    padding: auto; /* Slightly reduce padding if needed */
+    display:block; /* Ensures buttons can sit side by side */
+    border: none; /* Removes default border */
+    border-radius: 8px; /* Rounded corners */
+    font-weight: 500; /* Bold font */
+    font-size: smaller;
+    text-transform: uppercase; /* Capitalize text */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    cursor: pointer; /* Cursor indicates clickable button */
+    outline: none; /* Removes outline */
+  }
+
   
+  .btn-primary {
+    background-color: #5604a3; /* Primary color for your theme */
+    color: #fff; /* White text */
+    width: 90px;
+    height: auto;
+  }
+  
+  .btn-primary:hover {
+    color: #ffffff;
+    background-color: #7907e4; /* Lighter purple when hovered */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  }
+  
+  .btn-danger {
+    background-color: #f64f5a; /* Bright color for delete, adjust if necessary */
+    color: #fff; /* White text */
+    width: 80px;
+    height: 30px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #f57485; /* Slightly lighter red on hover */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  }
+  .table td.actions {
+    text-align: center;
+}
+
+
+  /* This media query targets window widths of 1020px */
+
+
+.mobile-card {
+    background-color: #f5f5f5;  /* Light gray background */
+    border: 1px solid #9704c8;  /* Purple border */
+    color: #6618a5;             /* Dark text for readability */
+    padding: 20px;              /* More padding for spacing */
+    margin: 20px auto;          /* Top/bottom margin and horizontally centered */
+    width: 50%;                 /* Width adjustment for better control */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for 3D effect */
+    border-radius: 8px;         /* Rounded corners */
+    display: none;             /* Ensures it's always treated as a block element */
+}
+  
+  /* Media query for small screens */
+  @media (max-width: 929px) {
+    .table.table-dark1 {
+      display: none; /* Hide table on small screens */
+    }
+    .mobile-card {
+      display: block; /* Show mobile cards on small screens */
+    }
+  }
 
 
