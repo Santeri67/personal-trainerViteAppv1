@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import 'dayjs/locale/fi'; // Finnish locale for consistent date formatting
+import 'dayjs/locale/fi';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TrainingTable from './TrainingTable';
@@ -27,10 +27,10 @@ function TrainingList() {
         const endpoint = `https://customerrestservice-personaltraining.rahtiapp.fi/gettrainings`;
         try {
             const response = await axios.get(endpoint);
-            console.log("API Response:", response.data); // Log the raw API response
+            console.log("API Response:", response.data);
             let trainingsData = response.data._embedded ? response.data._embedded.trainings : response.data;
             if (!Array.isArray(trainingsData)) {
-                trainingsData = []; // Handle unexpected data structures
+                trainingsData = [];
             }
             trainingsData = trainingsData.map(training => ({
                 ...training,
@@ -42,7 +42,7 @@ function TrainingList() {
         } catch (error) {
             console.error('Error fetching trainings:', error);
             alert(`Failed to fetch trainings: ${error.toString()}`);
-            setTrainings([]); // Set trainings to an empty array on error
+            setTrainings([]);
         }
     }, [applyFiltering, applySorting]);
 

@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Navigation from '././components/Navigation'; // Make sure this path is correct
+import Navigation from '././components/Navigation';
 import './App.css';
 import CustomerList from './components/CustomerList/CustomerList';
 import CustomerTrainings from './components/TrainingList/CustomerTrainings';

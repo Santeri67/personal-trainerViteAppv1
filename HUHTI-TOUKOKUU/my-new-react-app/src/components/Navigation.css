@@ -1,8 +1,8 @@
 .navbar {
-    padding: 10px 2px 20px 2px; /* Increased padding */
+    padding: 10px 2px 20px 2px;
     text-align: center;
     margin-top: 1px;
-  }
+}
 .Navi {
     margin-top: -5px;
     background-color: #7bcdf7;
@@ -22,24 +22,21 @@
     border-radius: 8px;
     margin-left: -10%;
 }}
-  
-  .nav-link {
-    margin-right: 10%; /* Adjusted space between links */
+
+.nav-link {
+    margin-right: 10%;
     margin-left: 10%;
     color: #410590;
-    transition: color 0.3s; /* Smooth transition for hover effect */
+    transition: color 0.3s;
     font-size: 1.6em;
     border-radius: 15px;
     padding: 0%;
-  }
-  
-  .nav-link:hover, .nav-link.active {
-    color: #a513e4; /* Lighter color on hover and active */
-  }
-  
-  .active {
-    font-weight: bold; /* Bold text for active link */
-  }
-  
+}
 
-  
+.nav-link:hover, .nav-link.active {
+    color: #a513e4;
+}
+
+.active {
+    font-weight: bold;
+}

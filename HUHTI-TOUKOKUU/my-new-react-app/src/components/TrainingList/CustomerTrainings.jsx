@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import 'dayjs/locale/fi'; // Import Finnish locale
+import 'dayjs/locale/fi';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './TrainingList.css';
@@ -27,7 +27,6 @@ function CustomerTrainings() {
         fetchCustomerDetails();
     }, [customerId]);
 
-    // Fetch trainings for the customer
     useEffect(() => {
         const fetchTrainings = async () => {
             try {

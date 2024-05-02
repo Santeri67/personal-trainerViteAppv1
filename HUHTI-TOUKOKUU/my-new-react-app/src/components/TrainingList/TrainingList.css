@@ -10,35 +10,35 @@ body {
     min-height: 100vh;
 }
 h2 {
-    text-align: center; /* Center-align the heading */
-    margin-bottom: 20px; /* Add some space below the heading */
-    color: rgb(65, 5, 144); /* Optional: Change the color */
-    font-size: 1.8em; /* Optional: Adjust the font size */
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(65, 5, 144);
+    font-size: 1.8em;
 }
 .container {
-    width: 80%; /* Adjust this to control the outer container's width */
-    margin: 20px auto; /* Center the container horizontally */
-    padding: 20px; /* Adds padding inside the container */
-    background-color:rgba(248, 255, 206, 0.694); /* Optional: Background color for the container */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow around the container */
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color:rgba(248, 255, 206, 0.694);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .table.table-dark {
-    margin-top: 0; /* Remove the top margin from the table */
-    width: 100%; /* Let the table take full width of the container */
-    margin-left: auto; /* Center align the table */
-    margin-right: auto; /* Center align the table */
-    border-collapse: collapse; /* Collapsed borders */
+    margin-top: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
 }
 
 .table.table-dark th, .table.table-dark td {
-    padding: 12px; /* Spacing inside cells */
-    border: 1px solid #572981; /* Border color */
-    text-align: left; /* Align text to the left */
-    cursor: pointer; /* Indicates clickable items */
+    padding: 12px;
+    border: 1px solid #572981;
+    text-align: left;
+    cursor: pointer;
 }
 
 .table.table-dark th {
-    background-color: #21033a; /* Even darker background for headers */
+    background-color: #21033a;
     color: #fff;
 }
 
@@ -46,33 +46,27 @@ h2 {
     background-color: rgba(245, 245, 220, 0.821);
     color: #21033a;
 }
-/* Ensure the table cell containing the buttons is wide enough */
 
-
-
-
-
-/* Hover effects for rows */
 .table.table-dark tbody tr:hover {
-    background-color: #0884e2; /* Lighten the row background on hover for interactivity */
+    background-color: #0884e2;
 }
 .svg-inline--fa.fa-sort {
-    color: rgb(123, 0, 255) !important;  /* Replace with your active color */
+    color: rgb(123, 0, 255) !important;
     cursor: pointer;
     float: inline-end;
 }
 .svg-inline--fa.fa-sort-down {
-    color: rgb(0, 242, 255) !important;  /* Replace with your active color */
+    color: rgb(0, 242, 255) !important;
     cursor: pointer;
     float: inline-end;
 }
 .svg-inline--fa.fa-sort-up {
-    color: rgb(0, 242, 255) !important;  /* Replace with your active color */
+    color: rgb(0, 242, 255) !important;
     cursor: pointer;
     float: inline-end;
 }
 .sort-icon-inactive {
     float: right;
-    color: rgba(243, 6, 6, 0.812); /* Replace with your inactive color */
+    color: rgba(243, 6, 6, 0.812);
     cursor: pointer;
 }
