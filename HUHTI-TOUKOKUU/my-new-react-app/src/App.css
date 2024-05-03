@@ -1,8 +1,11 @@
 :root {
-  --primary-color: #21033a; /* Primary color for backgrounds */
-  --secondary-color: #572981; /* Secondary color for borders */
-  --highlight-color: #0884e2; /* Highlight color for hover effects */
-  --background-color: rgba(143, 241, 248, 0.821); /* Background color for table cells */
+  --primary-color: #21033a;
+  --secondary-color: #572981;
+  --highlight-color: #0884e2;
+  --background-color: rgba(143, 241, 248, 0.821);
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
@@ -11,15 +14,7 @@ body {
   color: var(--text-color);
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
-
-
-
-/* If you have a specific style guide or theme colors, replace the colors accordingly */
 
 
 .container {
@@ -47,6 +42,6 @@ h2 {
   padding: 10px;
   margin: 10px auto;
   display: block;
-  border: 3px groove #5604a3; /* Stylish purple border */
+  border: 3px groove #5604a3;
   border-radius: 7px;
 }

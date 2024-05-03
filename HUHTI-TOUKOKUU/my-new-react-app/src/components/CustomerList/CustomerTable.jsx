@@ -1,11 +1,26 @@
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import { useState } from 'react';
+import AddTrainingForm from './AddTrainingForm';
 import './CustomerList.css';
 
-function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { key: '', direction: '' }, setCustomers }) {
+function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { key: '', direction: '' }, setCustomers, handleModify }) {
+    const [showAddTraining, setShowAddTraining] = useState(false);
+    const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+
+    const handleOpenTrainingModal = (customerId) => {
+        setShowAddTraining(true);
+        setSelectedCustomerId(customerId);
+    };
+
+    const handleCloseTrainingModal = () => {
+        setShowAddTraining(false);
+    };
+
     const handleDeleteCustomer = async (customerId) => {
         if (window.confirm("Are you sure you want to delete this customer?")) {
+            console.log("Deleting customer with ID:", customerId);  // This will log the ID being deleted
             try {
                 const response = await axios.delete(`https://customerrestservice-personaltraining.rahtiapp.fi/api/customers/${customerId}`);
                 if (response.status === 200) {
@@ -28,8 +43,11 @@ function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { ke
                 <p><strong>City:</strong> {customer.city}</p>
                 <p><strong>Email:</strong> {customer.email}</p>
                 <p><strong>Phone:</strong> {customer.phone}</p>
-                <p><button onClick={() => navigate?.(`/customers/${customer.id}/trainings`)} className="btn btn-primary">View Trainings</button></p>
+                <p><button onClick={() => navigate?.(`/customers/${customer.id}/trainings`)} className="btn btn-primary1">View Trainings</button></p>
                 <p><button onClick={() => handleDeleteCustomer(customer.id)} className="btn btn-danger">Delete</button></p>
+                <p><button onClick={() => handleModify(customer)} className="btn btn-secondary">Modify</button></p>
+                <p><button onClick={() => handleOpenTrainingModal(customer.id)} className="btn btn-success">Add Training</button></p>
+
             </div>
         ))}
         
@@ -58,16 +76,19 @@ function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { ke
                                 <td>{customer.email}</td>
                                 <td>{customer.phone}</td>
                                 <td className="actions">
-                            <div className="button-group">
-                                <button onClick={() => navigate?.(`/customers/${customer.id}/trainings`)} className="btn btn-primary">View Trainings</button>
+                                <button onClick={() => navigate?.(`/customers/${customer.id}/trainings`)} className="btn btn-primary1">View Trainings</button>
                                 <button onClick={() => handleDeleteCustomer(customer.id)} className="btn btn-danger">Delete</button>
-                            </div>
+                                <button onClick={() => handleModify(customer)} className="btn btn-secondary">Modify</button>
+                                <button onClick={() => handleOpenTrainingModal(customer.id)} className="btn btn-success">Add Training</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
+        {showAddTraining && (
+                <AddTrainingForm show={showAddTraining} handleClose={handleCloseTrainingModal} customerId={selectedCustomerId} />
+            )}
     </>
 );
 }

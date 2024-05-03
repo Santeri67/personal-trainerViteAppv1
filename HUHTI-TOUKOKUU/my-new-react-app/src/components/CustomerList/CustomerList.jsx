@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddCustomerModal from './AddCustomerModal';
 import CustomerTable from './CustomerTable';
+import ModifyCustomerForm from './ModifyCustomerForm';
 
 function CustomerList() {
+    const [showModifyModal, setShowModifyModal] = useState(false);
+    const [editingCustomer, setEditingCustomer] = useState(null);
     const [customers, setCustomers] = useState([]);
     const [filteredCustomers, setFilteredCustomers] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: 'firstname', direction: 'ascending' });
@@ -33,7 +37,7 @@ function CustomerList() {
                 if (response.data._embedded && response.data._embedded.customers) {
                     let fetchedCustomers = response.data._embedded.customers.map(customer => ({
                         ...customer,
-                        id: customer._links.self.href.split('/').pop() // Extracts the ID
+                        id: customer._links.self.href.split('/').pop()
                     }));
                     setCustomers(fetchedCustomers);
                     setFilteredCustomers(applySorting(fetchedCustomers));
@@ -47,6 +51,18 @@ function CustomerList() {
         };
         fetchAndProcessCustomers();
     }, []);
+
+const handleShowModifyModal = () => setShowModifyModal(true);
+const handleCloseModifyModal = () => {
+    setShowModifyModal(false);
+    setEditingCustomer(null);  // Clear the editing state when closing modal
+};
+
+const handleModify = (customer) => {
+    setEditingCustomer(customer);
+    handleShowModifyModal();
+};
+
 
     useEffect(() => {
         applyFiltering();
@@ -64,10 +80,26 @@ function CustomerList() {
     };
 
     return (
-        <div>
+        <div className='tablecontainer'>
             <h2>Customer List</h2>
+            <AddCustomerModal customers={customers} setCustomers={setCustomers} />
             <input type="text" className="form-control my-3" placeholder="Filter by name..." value={filter} onChange={handleFilterChange} />
-            <CustomerTable customers={filteredCustomers} handleSort={handleSort} navigate={navigate} sortConfig={sortConfig} />
+            <CustomerTable
+                customers={filteredCustomers}
+                handleSort={handleSort}
+                navigate={navigate}
+                sortConfig={sortConfig}
+                setCustomers={setCustomers}
+                handleModify={handleModify} // Ensure this prop is correctly passed
+            />
+            {editingCustomer && showModifyModal && (
+                <ModifyCustomerForm
+                    customer={editingCustomer}
+                    setCustomers={setCustomers}
+                    showModal={showModifyModal}
+                    closeModal={handleCloseModifyModal}
+                />
+            )}
         </div>
     );
 }

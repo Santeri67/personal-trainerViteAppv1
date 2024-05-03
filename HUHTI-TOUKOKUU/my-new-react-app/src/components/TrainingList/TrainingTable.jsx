@@ -9,7 +9,7 @@ import './TrainingList.css';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-function TrainingTable({ trainings, handleSort, sortConfig}) {
+function TrainingTable({ trainings, handleSort, sortConfig, handleDeleteTraining}) {
     dayjs.locale('fi');
     dayjs.tz.setDefault("Europe/Helsinki");
 
@@ -21,6 +21,7 @@ function TrainingTable({ trainings, handleSort, sortConfig}) {
                     <th onClick={() => handleSort('duration')}>Duration (min)<FontAwesomeIcon icon={sortConfig.key === 'duration' ? (sortConfig.direction === 'ascending' ? faSortUp : faSortDown) : faSort} /></th>
                     <th onClick={() => handleSort('activity')}>Activity<FontAwesomeIcon icon={sortConfig.key === 'activity' ? (sortConfig.direction === 'ascending' ? faSortUp : faSortDown) : faSort} /></th>
                     <th>Customer Name</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,9 @@ function TrainingTable({ trainings, handleSort, sortConfig}) {
                         <td>{training.duration}</td>
                         <td>{training.activity}</td>
                         <td>{training.customerName || 'N/A'}</td>
+                        <td>
+                            <button onClick={() => handleDeleteTraining(training.id)} className="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

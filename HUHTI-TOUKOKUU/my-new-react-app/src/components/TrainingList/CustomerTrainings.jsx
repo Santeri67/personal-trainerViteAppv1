@@ -3,7 +3,9 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { deleteTraining } from '../../utils/apiHelpers';
 import './TrainingList.css';
+
 
 function CustomerTrainings() {
     const { customerId } = useParams();
@@ -24,10 +26,6 @@ function CustomerTrainings() {
             }
         };
 
-        fetchCustomerDetails();
-    }, [customerId]);
-
-    useEffect(() => {
         const fetchTrainings = async () => {
             try {
                 const response = await axios.get(`https://customerrestservice-personaltraining.rahtiapp.fi/api/customers/${customerId}/trainings`);
@@ -43,8 +41,24 @@ function CustomerTrainings() {
             }
         };
 
+        fetchCustomerDetails();
         fetchTrainings();
     }, [customerId]);
+
+    const handleDeleteTraining = async (trainingId) => {
+        if (window.confirm("Are you sure you want to delete this training?")) {
+            try {
+                const response = await deleteTraining(trainingId);
+                if (response.status === 204) {
+                    setTrainings(prevTrainings => prevTrainings.filter(t => t.id !== trainingId));
+                    alert("Training deleted successfully.");
+                }
+            } catch (error) {
+                console.error('Failed to delete training:', error);
+                alert('Failed to delete training. Please try again.');
+            }
+        }
+    };
 
     return (
         <div className="container">
@@ -56,6 +70,7 @@ function CustomerTrainings() {
                             <th>Date</th>
                             <th>Duration (min)</th>
                             <th>Activity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +79,9 @@ function CustomerTrainings() {
                                 <td>{dayjs(training.date).format('DD.MM.YYYY HH:mm')}</td>
                                 <td>{training.duration}</td>
                                 <td>{training.activity}</td>
+                                <td>
+                                    <button onClick={() => handleDeleteTraining(training.id)} className="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

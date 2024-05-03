@@ -1,143 +1,137 @@
-body {
-    font-family: 'Inter', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+/* General body styling, ensuring everything is flex-centered */
+
+.tablecontainer {
+  padding-top: 0px;
+}
 .table-responsive {
-    display: block;
-    width: 95%;
-    overflow-x: auto;
-    padding: 0 15px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f6f2b0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.table td.actions {
-    align-items: center;
+  padding-top: 0px;
 }
 .table.table-dark1 {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-    table-layout: fixed;
+  width: 85%; /* Adjusted width to prevent full-width stretch */
+  margin: 10px auto; /* Center the table horizontally */
+  border-collapse: collapse;
+  table-layout: auto; /* Changed from fixed to auto for auto-adjusting columns */
+  word-wrap: break-word; /* Ensure long words do not overflow */
 }
 
 .table.table-dark1 th, .table.table-dark1 td {
-    border: 1px solid #572981;
-    text-align: left;
-    word-wrap: break-word;
-    cursor: pointer;
+  padding: 10px; /* Adjust padding to ensure text doesn't crowd */
+  border: 1px solid #572981;
+  text-align: left;
+  vertical-align: middle; /* Ensure text aligns in the middle vertically */
 }
 
 .table.table-dark1 th {
-    background-color: #21033a;
-    color: #fff;
-    padding: 14px;
-    
+  background-color: #21033a;
+  color: #fff;
 }
-.table-dark1 td {
-    background-color: rgba(245, 245, 220, 0.821);
-    color: #21033a;
+.table.table-dark1 td {
+background-color: rgba(245, 245, 220, 0.821);
 }
-
 .table.table-dark1 tbody tr:hover {
-    background-color: #0884e2;
+  background-color: #477ca5; /* Highlight row on hover for better visibility */
 }
 
-.sort-icon-active {
-    color: rgb(0, 242, 255);
-    cursor: pointer;
-    float: inline-end;
-}
-
-.sort-icon-inactive {
-    float: right;
-    color: rgba(128, 128, 128, 0.812);
-    cursor: pointer;
-}
-
-.text-center {
-    text-align: center;
-  }
-  .btn {
-    margin: 2px;
-    padding: auto;
-    display:block;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: smaller;
-    text-transform: uppercase;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    outline: none;
-  }
-
-  
-  .btn-primary {
-    background-color: #5604a3;
-    color: #fff;
-    width: 90px;
-    height: auto;
-  }
-  
-  .btn-primary:hover {
-    color: #ffffff;
-    background-color: #7907e4;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  }
-  
-  .btn-danger {
-    background-color: #f64f5a;
-    color: #fff;
-    width: 80px;
-    height: 30px;
-  }
-  
-  .btn-danger:hover {
-    background-color: #f57485;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  }
-  .table td.actions {
-    text-align: center;
+/* Adjusting font sizes for better legibility */
+.table.table-dark1 th, .table.table-dark1 td {
+  font-size: 0.9em; /* Adjust the font size as necessary */
 }
 
 
+/* Container for wrapping content around the table, ensuring it's centered */
 
 
+/* Button styling for consistency */
+.btn {
+  display: inline-block; /* Align buttons inline */
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 6px 12px; /* Standard padding for buttons */
+  font-size: smaller;
+  text-transform: uppercase;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
 
+/* Styling for primary (blue) buttons */
+.btn-primary {
+  background-color: #5604a3;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 43.3%;
+  margin-right: auto;
+}
+.btn.btn-primary1 {
+  background-color: #5604a3;
+  color: #fff;
+}
+
+/* Hover effect for primary buttons */
+.btn-primary:hover {
+  background-color: #7907e4;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Styling for danger (red) buttons */
+.btn-danger {
+  background-color: #f64f5a;
+  color: #fff;
+}
+
+/* Hover effect for danger buttons */
+.btn-danger:hover {
+  background-color: #f57485;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Mobile card display settings */
 .mobile-card {
-    background-color: #f5f5f5;
-    border: 1px solid #9704c8;
-    color: #6618a5;
-    padding: 20px;
-    margin: 20px auto;
-    width: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: none;
+  display: none; /* Hidden by default, shown only in mobile view */
+  width: 90%; /* Adjust width for mobile */
+  margin: 10px auto; /* Center and provide margin around */
+  padding: 20px;
+  background-color: #ebfbdb;
+  border: 1px solid #9704c8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
-  
-  /* Media query for small screens */
-  @media (max-width: 929px) {
-    .table.table-dark1 {
-      display: none;
-    }
-    .mobile-card {
-      display: block;
-    }
+.mobile-card:hover {
+  background-color: #fff7ae;
+}
+
+/* Responsive settings for small screens */
+@media (max-width: 929px) {
+  .table.table-dark1 {
+      display: none; /* Hide table on small screens */
   }
+  .mobile-card {
+      display: block; /* Show mobile cards on small screens */
+  }
+}
+.modal-content {
+  background-color: #5604a3;
+
+}
+.modal-header{
+  color: rgb(4, 167, 182);
+}
+.modal-body {
+  background-color: rgb(255, 228, 188);
+}
+.modal-body input {
+  margin-top: 5px;
+  margin-right: 6px;
+}
+.button.btn-close {
+  color: #a10b0b;
+  background-color: #21033a;
+}
+.submit-buttons {
+  color: #21033a;
+  background-color: #1e9dc4;
+  padding: 2.7px;
+  border: none;
+  border-radius: 8px;
+
+}
 
 

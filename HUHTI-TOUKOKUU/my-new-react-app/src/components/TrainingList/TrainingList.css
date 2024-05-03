@@ -1,28 +1,13 @@
-body {
-    font-family: 'Inter', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+
 h2 {
     text-align: center;
-    margin-top: 120px;
+    margin-top: 50px;
     margin-bottom: 20px;
     color: rgb(65, 5, 144);
-    font-size: 1.8em;
+    font-size: 2.5em;
+    font-weight: 600;
 }
-.container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color:rgba(248, 255, 206, 0.694);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+
 .table.table-dark {
     margin-top: 0;
     width: 100%;
@@ -49,7 +34,7 @@ h2 {
 }
 
 .table.table-dark tbody tr:hover {
-    background-color: #0884e2;
+    background-color: #477ca5;
 }
 .svg-inline--fa.fa-sort {
     color: rgb(123, 0, 255) !important;

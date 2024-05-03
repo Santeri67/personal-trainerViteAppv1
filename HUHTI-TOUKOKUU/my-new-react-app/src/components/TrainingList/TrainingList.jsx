@@ -3,7 +3,12 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { deleteTraining } from '../../utils/apiHelpers';
 import TrainingTable from './TrainingTable';
+
+
+
+
 
 function TrainingList() {
     const navigate = useNavigate();
@@ -57,6 +62,21 @@ function TrainingList() {
         }));
     }, []);
 
+    const handleDeleteTraining = async (trainingId) => {
+        if (window.confirm("Are you sure you want to delete this training?")) {
+            try {
+                const response = await deleteTraining(trainingId);
+                if (response.status === 204) {
+                    setTrainings(prevTrainings => prevTrainings.filter(t => t.id !== trainingId));
+                    alert("Training deleted successfully.");
+                }
+            } catch (error) {
+                console.error('Failed to delete training:', error);
+                alert('Failed to delete training. Please try again.');
+            }
+        }
+    };
+
     return (
         <div>
             <h2>All Trainings</h2>
@@ -68,7 +88,7 @@ function TrainingList() {
                 onChange={(e) => setFilter(e.target.value)}
             />
             {trainings.length > 0 ? (
-                <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} />
+                <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} handleDeleteTraining={handleDeleteTraining} />
             ) : (
                 <div>No trainings found or data is still loading.</div>
             )}
