@@ -1,10 +1,11 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteTraining } from '../../utils/apiHelpers';
+import TrainingCalendar from './TrainingCalendar';
 import TrainingTable from './TrainingTable';
+
 
 
 
@@ -15,6 +16,8 @@ function TrainingList() {
     const [trainings, setTrainings] = useState([]);
     const [filter, setFilter] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: '', direction: 'ascending' });
+    const [events, setEvents] = useState([]);
+    const [showCalendar, setShowCalendar] = useState(false);
 
     const applyFiltering = useCallback((trainings) => (
         trainings.filter(training => training.activity.toLowerCase().includes(filter.toLowerCase()))
@@ -37,13 +40,28 @@ function TrainingList() {
             if (!Array.isArray(trainingsData)) {
                 trainingsData = [];
             }
+            
+            // Convert dates to Date objects and add customer names right here
             trainingsData = trainingsData.map(training => ({
                 ...training,
-                date: dayjs(training.date).format('DD.MM.YYYY HH:mm'),
-                customerName: training.customer ? `${training.customer.firstname} ${training.customer.lastname}` : 'Unknown'
+                date: new Date(training.date), // Converting string date to Date object
+                customerName: training.customer ? `${training.customer.firstname} ${training.customer.lastname}` : 'Unknown',
+                end: new Date(new Date(training.date).getTime() + training.duration * 60000) // Calculating end time
             }));
+    
+            // Apply filtering and sorting
             trainingsData = applySorting(applyFiltering(trainingsData));
             setTrainings(trainingsData);
+    
+            // Transform trainings data into events for the calendar
+            const calendarEvents = trainingsData.map(training => ({
+                title: `${training.activity} / ${training.customerName}`,
+                start: training.date,
+                end: training.end
+            }));
+            console.log("Events set for calendar:", calendarEvents);
+            setEvents(calendarEvents);
+    
         } catch (error) {
             console.error('Error fetching trainings:', error);
             alert(`Failed to fetch trainings: ${error.toString()}`);
@@ -80,20 +98,25 @@ function TrainingList() {
     return (
         <div>
             <h2>All Trainings</h2>
+            <button onClick={() => setShowCalendar(!showCalendar)} className="btn btn-toggle">
+                {showCalendar ? "Show Table" : "Show Calendar"}
+            </button>
             <input
                 type="text"
                 className="form-control my-3"
                 placeholder="Filter by activity..."
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
-            />
-            {trainings.length > 0 ? (
-                <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} handleDeleteTraining={handleDeleteTraining} />
-            ) : (
-                <div>No trainings found or data is still loading.</div>
-            )}
-        </div>
-    );
-}
+                />
+                {trainings.length > 0 ? (
+                    showCalendar ?
+                    <TrainingCalendar events={events} /> :
+                    <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} handleDeleteTraining={handleDeleteTraining} />
+                ) : (
+                    <div>No trainings found or data is still loading.</div>
+                )}
+            </div>
+        );
+    }
 
 export default TrainingList;

@@ -25,7 +25,7 @@ function NewCustomerForm({ setCustomers, customers, closeModal }) {
                     'Content-Type': 'application/json'
                 }
             });
-            setCustomers([...customers, response.data]); // Update the local state to include the new customer
+            setCustomers([...customers, response.data]);
             alert('Customer added successfully!');
             closeModal();
         } catch (error) {

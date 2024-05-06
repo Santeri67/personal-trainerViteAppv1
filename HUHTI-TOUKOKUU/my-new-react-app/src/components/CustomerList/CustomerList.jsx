@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddCustomerModal from './AddCustomerModal';
 import CustomerTable from './CustomerTable';
+import ExportCustomer from './ExportCustomer';
 import ModifyCustomerForm from './ModifyCustomerForm';
 
 function CustomerList() {
@@ -55,7 +56,7 @@ function CustomerList() {
 const handleShowModifyModal = () => setShowModifyModal(true);
 const handleCloseModifyModal = () => {
     setShowModifyModal(false);
-    setEditingCustomer(null);  // Clear the editing state when closing modal
+    setEditingCustomer(null);
 };
 
 const handleModify = (customer) => {
@@ -83,6 +84,7 @@ const handleModify = (customer) => {
         <div className='tablecontainer'>
             <h2>Customer List</h2>
             <AddCustomerModal customers={customers} setCustomers={setCustomers} />
+            <ExportCustomer />
             <input type="text" className="form-control my-3" placeholder="Filter by name..." value={filter} onChange={handleFilterChange} />
             <CustomerTable
                 customers={filteredCustomers}
@@ -90,7 +92,7 @@ const handleModify = (customer) => {
                 navigate={navigate}
                 sortConfig={sortConfig}
                 setCustomers={setCustomers}
-                handleModify={handleModify} // Ensure this prop is correctly passed
+                handleModify={handleModify}
             />
             {editingCustomer && showModifyModal && (
                 <ModifyCustomerForm

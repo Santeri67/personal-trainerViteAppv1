@@ -10,9 +10,10 @@ h2 {
 
 .table.table-dark {
     margin-top: 0;
-    width: 100%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 15px;
     border-collapse: collapse;
 }
 
@@ -55,4 +56,12 @@ h2 {
     float: right;
     color: rgba(243, 6, 6, 0.812);
     cursor: pointer;
+}
+@media (max-width: 1000px) {
+    .form-control{
+        margin-left: 25%;
+    }
+    .btn-toggle{
+        margin-left: 10px;
+    }
 }

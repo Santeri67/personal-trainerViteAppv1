@@ -20,7 +20,7 @@ function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { ke
 
     const handleDeleteCustomer = async (customerId) => {
         if (window.confirm("Are you sure you want to delete this customer?")) {
-            console.log("Deleting customer with ID:", customerId);  // This will log the ID being deleted
+            console.log("Deleting customer with ID:", customerId);
             try {
                 const response = await axios.delete(`https://customerrestservice-personaltraining.rahtiapp.fi/api/customers/${customerId}`);
                 if (response.status === 200) {
@@ -77,7 +77,7 @@ function CustomerTable({ customers = [], handleSort, navigate, sortConfig = { ke
                                 <td>{customer.phone}</td>
                                 <td className="actions">
                                 <button onClick={() => navigate?.(`/customers/${customer.id}/trainings`)} className="btn btn-primary1">View Trainings</button>
-                                <button onClick={() => handleDeleteCustomer(customer.id)} className="btn btn-danger">Delete</button>
+                                <button onClick={() => handleDeleteCustomer(customer.id)} className="btn btn-danger">Delete Customer</button>
                                 <button onClick={() => handleModify(customer)} className="btn btn-secondary">Modify</button>
                                 <button onClick={() => handleOpenTrainingModal(customer.id)} className="btn btn-success">Add Training</button>
                             </td>

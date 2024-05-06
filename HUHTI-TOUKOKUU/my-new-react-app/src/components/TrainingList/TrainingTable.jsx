@@ -6,6 +6,7 @@ import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import './TrainingList.css';
 
+
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
