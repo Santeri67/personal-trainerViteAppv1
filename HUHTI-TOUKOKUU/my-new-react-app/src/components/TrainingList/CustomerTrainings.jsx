@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import 'dayjs/locale/fi'; // Optional for locale settings
+import 'dayjs/locale/fi';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './TrainingList.css';
@@ -30,10 +30,10 @@ function CustomerTrainings() {
                 if (response.data._embedded) {
                     const trainingsWithIds = response.data._embedded.trainings.map((training, index) => ({
                         ...training,
-                        id: training.id || `fallback-id-${index}`, // Fallback ID if undefined
+                        id: training.id || `fallback-id-${index}`,
                         date: dayjs(training.date).format('DD.MM.YYYY HH:mm')
                     }));
-                    console.log("Fetched Trainings with IDs:", trainingsWithIds);  // Debugging output
+                    console.log("Fetched Trainings with IDs:", trainingsWithIds);
                     setTrainings(trainingsWithIds);
                 }
             } catch (error) {

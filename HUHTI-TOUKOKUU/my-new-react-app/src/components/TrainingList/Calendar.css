@@ -1,51 +1,50 @@
-/* General styles for calendar components */
+
 .rbc-calendar {
-    background-color: #89dbfb; /* Light blue background for calendar */
+    background-color: #89dbfb;
     margin-top: 20px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    color: #333; /* Dark grey text for better readability */
+    color: #333;
 }
 
-/* Button styling */
 .btn-toggle {
-    background-color: #5604a3; /* Dark purple background */
-    color: #fff; /* White text */
+    background-color: #5604a3;
+    color: #fff;
     margin-left: 100px;
     margin-right: auto;
 }
 
 .btn-toggle:hover {
     background-color: transparent;
-    border: 2px solid #5604a3; /* Dark purple border on hover */
+    border: 2px solid #5604a3;
     padding: 7px;
 }
 
-/* Toolbar and button styling within the toolbar */
+
 .rbc-toolbar {
-    border-bottom: 2px solid #8608cf; /* Solid bottom border */
+    border-bottom: 2px solid #8608cf;
     padding: 10px;
-    background-color: #7b48f383; /* Very light purple background */
+    background-color: #7b48f383;
 }
 
 .rbc-toolbar button,
 .rbc-btn {
-    color: #fff; /* White text */
-    background-color: #8608cf; /* Purple background */
-    border: 1px solid #8608cf; /* Purple border */
+    color: #fff;
+    background-color: #8608cf;
+    border: 1px solid #8608cf;
     padding: 5px 10px;
     margin: 2px;
-    border-radius: 4px; /* Rounded corners */
+    border-radius: 4px;
 }
 
 .rbc-toolbar button:hover,
 .rbc-active {
-    background-color: #a274ed; /* Lighter purple on hover/active */
-    border-color: #6f42c1; /* Dark purple border for emphasis */
+    background-color: #a274ed;
+    border-color: #6f42c1;
 }
 
-/* Event styling */
+
 .rbc-event {
     min-height: 20px;
     align-items: center;
@@ -64,7 +63,7 @@
     border: none;
 }
 
-/* Border styling for all calendar components */
+
 .rbc-timeslot-group,
 .rbc-time-header-gutter,
 .rbc-day-bg,
@@ -87,7 +86,7 @@
     border-color: #8608cf !important;
 }
 
-/* Specific border adjustments for right and bottom borders */
+
 .rbc-header {
     border-right: 1px solid #8608cf !important;
     border-bottom: 1px solid #8608cf !important;
@@ -99,14 +98,13 @@
     border-right: 1px solid #8608cf !important;
 }
 
-/* Ensuring no right border for the last column */
+
 .rbc-time-header .rbc-row:first-child .rbc-header:last-child,
 .rbc-time-header .rbc-row:last-child .rbc-header:last-child,
 .rbc-date-cell:last-child {
     border-right: none !important;
 }
 
-/* Consistent horizontal grid lines */
 .rbc-time-content > .rbc-time-gutter + .rbc-row > * {
     border-left: 1px solid #8608cf !important;
 }

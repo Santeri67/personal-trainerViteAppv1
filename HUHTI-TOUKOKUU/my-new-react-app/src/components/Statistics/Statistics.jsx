@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import './Statistics.css'; // Ensure this CSS file contains the required styles
+import './Statistics.css';
 
 const Statistics = () => {
     const [data, setData] = useState([]);
@@ -39,7 +39,7 @@ const Statistics = () => {
         left: 20,
         bottom: 50
     }}
-    barSize={40} // Adjust this value as needed
+    barSize={40}
 >
     <CartesianGrid strokeDasharray="3 3" stroke="#7dc8f6c2"/>
     <XAxis dataKey="name" interval={0} tick={{ angle: -40, textAnchor: 'end' }} height={70} />

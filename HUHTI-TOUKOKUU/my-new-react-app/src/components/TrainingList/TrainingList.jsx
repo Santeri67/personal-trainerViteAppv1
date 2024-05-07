@@ -44,12 +44,11 @@ function TrainingList() {
             
             trainingsData = trainingsData.map(training => ({
                 ...training,
-                date: new Date(training.date), // Converting string date to Date object
+                date: new Date(training.date),
                 customerName: training.customer ? `${training.customer.firstname} ${training.customer.lastname}` : 'Unknown',
-                end: new Date(new Date(training.date).getTime() + training.duration * 60000) // Calculating end time
+                end: new Date(new Date(training.date).getTime() + training.duration * 60000)
             }));
     
-            // Apply filtering and sorting
             trainingsData = applySorting(applyFiltering(trainingsData));
             setTrainings(trainingsData);
     

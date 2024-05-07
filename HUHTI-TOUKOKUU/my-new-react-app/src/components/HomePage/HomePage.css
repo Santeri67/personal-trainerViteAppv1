@@ -1,13 +1,12 @@
-/* src/components/HomePage/HomePage.css */
 .homepage-container {
     margin-top: 100px;
     padding: 20px;
-    font-family: 'Wonderbar'; /* Modern looking font */
-    color: #333; /* Dark grey text for better readability */
-    background-color: #f4f4f4; /* Light grey background */
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    text-align: center; /* Centers the text */
+    font-family: 'Wonderbar';
+    color: #333;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -15,15 +14,15 @@
 }
 
 .homepage-container h1 {
-    color: #8a2be9; /* A pleasant blue */
-    font-size: 2.25rem; /* Responsive font size */
+    color: #8a2be9;
+    font-size: 2.25rem;
     margin-top: 2%;
 }
 
 .homepage-container p {
     margin-top: 4%;
-    font-size: 1.2rem; /* Slightly larger paragraph font size */
+    font-size: 1.2rem;
     font-weight: 100;
-    color: #545050dd; /* A slightly lighter shade of grey than headers */
-    margin-bottom: 20px; /* Adds bottom space between paragraphs */
+    color: #545050dd;
+    margin-bottom: 20px;
 }

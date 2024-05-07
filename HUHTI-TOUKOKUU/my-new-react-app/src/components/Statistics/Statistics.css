@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 100%; /* Ensures that the container takes full width */
-    overflow-x: auto; /* Allows scrolling on smaller devices */
+    width: 100%;
+    overflow-x: auto;
 
 }
 
@@ -20,7 +20,7 @@
     border-radius: 18px;
 }
 .recharts-rectangle.recharts-tooltip-cursor {
-    fill: #7dc8f6c2;  /* Change this color to any hover color you prefer */
+    fill: #7dc8f6c2;
     transition: fill 2s ease;
 }
 .recharts-wrapper {
@@ -39,21 +39,18 @@
     margin-left: 20px;
 }
 .recharts-cartesian-axis-ticks {
-    overflow: visible !important; /* Make sure ticks are not clipped */
+    overflow: visible !important;
 }
 
 .recharts-text.recharts-cartesian-axis-tick-value {
-    font-size: 16px; /* Ensure the font size is manageable */
+    font-size: 16px;
 }
-/* Add this to your Statistics.css */
+
 
 @media (max-width: 768px) {
     .chart-container {
-        padding: 0px; /* Smaller padding on smaller screens */
+        padding: 0px;
         width: 200px !important;
-    }
-    .recharts-cartesian-axis-ticks {
-
     }
     .recharts-text.recharts-cartesian-axis-tick-value {
         font-size: 10px;
