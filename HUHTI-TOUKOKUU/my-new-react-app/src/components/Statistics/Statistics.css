@@ -1,0 +1,70 @@
+/* Statistics.css */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%; /* Ensures that the container takes full width */
+    overflow-x: auto; /* Allows scrolling on smaller devices */
+
+}
+
+
+.recharts-tooltip-wrapper {
+    color: rgb(166, 67, 243);
+}
+.recharts-default-tooltip {
+    fill:aquamarine;
+    background-color: rgba(104, 223, 247, 0.946) !important;
+    border: groove 1px rgb(214, 14, 250) !important;
+    border-radius: 18px;
+}
+.recharts-rectangle.recharts-tooltip-cursor {
+    fill: #7dc8f6c2;  /* Change this color to any hover color you prefer */
+    transition: fill 2s ease;
+}
+.recharts-wrapper {
+    margin: 0 auto;
+    margin-top: 0px !important;
+}
+.recharts-cartesian-axis-ticks {
+    width: 100% !important;
+}
+.recharts {
+    width: max-content;
+}
+
+
+.btn-info {
+    margin-left: 20px;
+}
+.recharts-cartesian-axis-ticks {
+    overflow: visible !important; /* Make sure ticks are not clipped */
+}
+
+.recharts-text.recharts-cartesian-axis-tick-value {
+    font-size: 16px; /* Ensure the font size is manageable */
+}
+/* Add this to your Statistics.css */
+
+@media (max-width: 768px) {
+    .chart-container {
+        padding: 0px; /* Smaller padding on smaller screens */
+        width: 200px !important;
+    }
+    .recharts-cartesian-axis-ticks {
+
+    }
+    .recharts-text.recharts-cartesian-axis-tick-value {
+        font-size: 10px;
+    }
+    .recharts-wrapper {
+        width: fit-content;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+
+
+

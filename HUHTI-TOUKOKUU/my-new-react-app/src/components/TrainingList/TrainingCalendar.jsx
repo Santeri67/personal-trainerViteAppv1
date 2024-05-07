@@ -6,15 +6,14 @@ import './Calendar.css';
 
 const localizer = momentLocalizer(moment);
 
-// Adjusted Custom Header Component
 function CustomHeader({ date }) {
-    // This ensures that each header calculates the week number based on its own date
+
     const weekNumber = moment(date).isoWeek();
     return <div>Week {weekNumber}</div>;
 }
 
 function TrainingCalendar({ events }) {
-    const [view, setView] = useState('week');  // Default to week view
+    const [view, setView] = useState('week');
 
     return (
         <div style={{ height: '100%', minHeight: '700px' }}>

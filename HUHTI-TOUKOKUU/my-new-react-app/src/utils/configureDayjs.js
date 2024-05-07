@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import 'dayjs/locale/fi'; // Finnish locale
+import 'dayjs/locale/fi';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 

@@ -3,6 +3,7 @@ import 'dayjs/locale/fi';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteTraining } from '../../utils/apiHelpers';
+import Statistics from '../Statistics/Statistics';
 import TrainingCalendar from './TrainingCalendar';
 import TrainingTable from './TrainingTable';
 
@@ -18,7 +19,7 @@ function TrainingList() {
     const [sortConfig, setSortConfig] = useState({ key: '', direction: 'ascending' });
     const [events, setEvents] = useState([]);
     const [showCalendar, setShowCalendar] = useState(false);
-
+    const [showStatistics, setShowStatistics] = useState(false);
     const applyFiltering = useCallback((trainings) => (
         trainings.filter(training => training.activity.toLowerCase().includes(filter.toLowerCase()))
     ), [filter]);
@@ -41,7 +42,6 @@ function TrainingList() {
                 trainingsData = [];
             }
             
-            // Convert dates to Date objects and add customer names right here
             trainingsData = trainingsData.map(training => ({
                 ...training,
                 date: new Date(training.date), // Converting string date to Date object
@@ -53,7 +53,6 @@ function TrainingList() {
             trainingsData = applySorting(applyFiltering(trainingsData));
             setTrainings(trainingsData);
     
-            // Transform trainings data into events for the calendar
             const calendarEvents = trainingsData.map(training => ({
                 title: `${training.activity} / ${training.customerName}`,
                 start: training.date,
@@ -101,22 +100,31 @@ function TrainingList() {
             <button onClick={() => setShowCalendar(!showCalendar)} className="btn btn-toggle">
                 {showCalendar ? "Show Table" : "Show Calendar"}
             </button>
-            <input
-                type="text"
-                className="form-control my-3"
-                placeholder="Filter by activity..."
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
+            <button onClick={() => setShowStatistics(!showStatistics)} className="btn btn-info">
+                {showStatistics ? "Hide Statistics" : "Show Statistics"}
+            </button>
+            {!showStatistics && (
+                <input
+                    type="text"
+                    className="form-control my-3"
+                    placeholder="Filter by activity..."
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
                 />
-                {trainings.length > 0 ? (
-                    showCalendar ?
-                    <TrainingCalendar events={events} /> :
-                    <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} handleDeleteTraining={handleDeleteTraining} />
-                ) : (
-                    <div>No trainings found or data is still loading.</div>
-                )}
-            </div>
-        );
-    }
+            )}
+            {showStatistics ? <Statistics /> : (
+                <>
+                    {trainings.length > 0 ? (
+                        showCalendar ?
+                        <TrainingCalendar events={events} /> :
+                        <TrainingTable trainings={trainings} handleSort={handleSort} sortConfig={sortConfig} navigate={navigate} handleDeleteTraining={handleDeleteTraining} />
+                    ) : (
+                        <div>No trainings found or data is still loading.</div>
+                    )}
+                </>
+            )}
+        </div>
+    );
+}
 
 export default TrainingList;
